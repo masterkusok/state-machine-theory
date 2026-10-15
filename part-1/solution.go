@@ -189,7 +189,7 @@ func deltaERR(_ symbolClass) state {
 
 // delta applies the transition function for the current state.
 func delta(q state, a symbolClass) state {
-	functions := [...]func(symbolClass) state{
+	functions := []func(symbolClass) state{
 		deltaS, deltaA, deltaP, deltaO, deltaJ, deltaT, deltaD1, deltaD2,
 		deltaK, deltaD3, deltaD4, deltaD5, deltaD6, deltaF, deltaERR,
 	}
@@ -197,7 +197,6 @@ func delta(q state, a symbolClass) state {
 	return functions[q](a)
 }
 
-// symbol classifies one input byte using the same ASCII rules as the C++ code.
 func symbol(c byte) symbolClass {
 	if c >= '0' && c <= '9' {
 		return symbolD
